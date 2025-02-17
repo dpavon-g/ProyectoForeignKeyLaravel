@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PropiedadesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $propiedades = DB::table('propiedades')
+        ->join('agentes', 'propiedades.agent_id', '=', 'agentes.id')
+        ->join('categorias', 'propiedades.category_id', '=', 'categorias.id')
+        ->select('propiedades.*', 'agentes.nombre as agente', 'categorias.nombre as categoria')
+        ->get();
+
+    return view('welcome', ['propiedades' => $propiedades]);
 });
