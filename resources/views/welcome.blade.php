@@ -22,7 +22,7 @@
             <div class="col-12 mt-4">
                 <div class="row">
                     <div class="col-4 text-center">
-                        <a href="#" class="btn btn-primary">Crear Agente</a>
+                        <a href="{{ route('agentes') }}" class="btn btn-primary">Crear Agente</a>
                     </div>
                     <div class="col-4 text-center">
                         <a href="#" class="btn btn-primary">Crear Categoria</a>

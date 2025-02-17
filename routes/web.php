@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PropiedadesController;
+use App\Http\Controllers\AgentesController;
+use App\Http\Controllers\CategoriasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +15,8 @@ use App\Http\Controllers\PropiedadesController;
 |
 */
 
-Route::get('/', [PropiedadesController::class, 'index']);
+Route::get('/', [PropiedadesController::class, 'index'])->name('home');
+
+Route::get('/agentes', [AgentesController::class, 'agentes'])->name('agentes');
+
+Route::post('/crearAgente', [AgentesController::class, 'store'])->name('crearAgente');
