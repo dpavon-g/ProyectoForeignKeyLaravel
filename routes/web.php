@@ -13,12 +13,4 @@ use App\Http\Controllers\PropiedadesController;
 |
 */
 
-Route::get('/', function () {
-    $propiedades = DB::table('propiedades')
-        ->join('agentes', 'propiedades.agent_id', '=', 'agentes.id')
-        ->join('categorias', 'propiedades.category_id', '=', 'categorias.id')
-        ->select('propiedades.*', 'agentes.nombre as agente', 'categorias.nombre as categoria')
-        ->get();
-
-    return view('welcome', ['propiedades' => $propiedades]);
-});
+Route::get('/', [PropiedadesController::class, 'index']);

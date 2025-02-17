@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Propiedades;
+use Illuminate\Support\Facades\DB; // Importa la fachada DB
+
 class PropiedadesController extends Controller
 {
     /**
@@ -10,7 +13,13 @@ class PropiedadesController extends Controller
      */
     public function index()
     {
-        //
+        $propiedades = DB::table('propiedades')
+                     ->join('agentes', 'propiedades.agent_id', '=', 'agentes.id')
+                     ->join('categorias', 'propiedades.category_id', '=', 'categorias.id')
+                     ->select('propiedades.*', 'agentes.nombre as agente', 'categorias.nombre as categoria')
+                     ->get();
+
+    return view('welcome', ['propiedades' => $propiedades]);
     }
 
     /**
