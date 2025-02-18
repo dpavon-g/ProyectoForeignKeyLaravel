@@ -19,34 +19,46 @@
     </header>
     <div class="container">
         <div class="row">
+            <div class="col-12 mt-3">
+                <a class="btn btn-primary"  href="{{ route('home') }}">Volver al home</a>
+            </div>
             <div class="col-12 mt-4">
                 <div class="row">
-                    <div class="col-4 text-center">
-                        <a href="{{ route('agentes') }}" class="btn btn-primary">Crear Agente</a>
+                    <div class="col-12 text-center mb-5">
+                        <h2>Categorías</h2>
                     </div>
-                    <div class="col-4 text-center">
-                        <a href="{{ route('categorias') }}" class="btn btn-primary">Crear Categoria</a>
-                    </div>
-                    <div class="col-4 text-center">
-                        <a href="#" class="btn btn-primary">Crear Propiedad</a>
-                    </div>
+                    <form action="{{ 'crearCategoria' }}" method="POST">
+                        @csrf
+                        @method('POST')
+                        <div class="row">
+                            <div class="col-6 text-center">
+                                <input type="text" name="Nombre" class="form-control" placeholder="Nombre" required>
+                            </div>
+                            <div class="col-6 text-center">
+                                <input type="text" name="Descripcion" class="form-control" placeholder="Descripción" required>
+                            </div>
+                            <div class="col-12 mt-3 text-center">
+                                <button type="submit" class="btn btn-primary">Crear categoría</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="col-12 mt-4">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Ubicación propiedad</th>
-                            <th>Nombre del agente</th>
-                            <th>Categoria</th>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($propiedades as $propiedad)
+                        @foreach($categorias as $categoria)
                             <tr>
-                                <td>{{ $propiedad->Ubicacion }}</td>
-                                <td>{{ $propiedad->agente }}</td>
-                                <td>{{ $propiedad->categoria }}</td>
+                                <td>{{ $categoria->id }}</td>
+                                <td>{{ $categoria->Nombre }}</td>
+                                <td>{{ $categoria->Descripcion }}</td>
                             </tr>
                         @endforeach
                     </tbody>

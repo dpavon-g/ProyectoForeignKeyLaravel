@@ -19,4 +19,8 @@ Route::get('/', [PropiedadesController::class, 'index'])->name('home');
 
 Route::get('/agentes', [AgentesController::class, 'agentes'])->name('agentes');
 
+Route::get('/categorias', [CategoriasController::class, 'categorias'])->name('categorias');
+
 Route::post('/crearAgente', [AgentesController::class, 'store'])->name('crearAgente');
+
+Route::post('/crearCategoria', [CategoriasController::class, 'store'])->name('crearCategoria');

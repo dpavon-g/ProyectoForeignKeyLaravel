@@ -24,6 +24,9 @@
             </div>
             <div class="col-12 mt-4">
                 <div class="row">
+                    <div class="col-12 text-center mb-5">
+                        <h2>Agentes</h2>
+                    </div>    
                     <form action="{{ 'crearAgente' }}" method="POST">
                         @csrf
                         @method('POST')
