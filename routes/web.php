@@ -21,6 +21,10 @@ Route::get('/agentes', [AgentesController::class, 'agentes'])->name('agentes');
 
 Route::get('/categorias', [CategoriasController::class, 'categorias'])->name('categorias');
 
+Route::get('/propiedades', [PropiedadesController::class, 'propiedades'])->name('propiedades');
+
 Route::post('/crearAgente', [AgentesController::class, 'store'])->name('crearAgente');
 
 Route::post('/crearCategoria', [CategoriasController::class, 'store'])->name('crearCategoria');
+
+Route::post('/crearPropiedad', [PropiedadesController::class, 'store'])->name('crearPropiedad');

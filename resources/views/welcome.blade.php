@@ -28,7 +28,7 @@
                         <a href="{{ route('categorias') }}" class="btn btn-primary">Crear Categoria</a>
                     </div>
                     <div class="col-4 text-center">
-                        <a href="#" class="btn btn-primary">Crear Propiedad</a>
+                        <a href="{{ route('propiedades') }}" class="btn btn-primary">Crear Propiedad</a>
                     </div>
                 </div>
             </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Propiedades;
+use App\Models\Agentes;
+use App\Models\Categorias;
 use Illuminate\Support\Facades\DB; // Importa la fachada DB
 
 class PropiedadesController extends Controller
@@ -19,8 +21,22 @@ class PropiedadesController extends Controller
                      ->select('propiedades.*', 'agentes.nombre as agente', 'categorias.nombre as categoria')
                      ->get();
 
-    return view('welcome', ['propiedades' => $propiedades]);
+        return view('welcome', ['propiedades' => $propiedades]);
     }
+
+
+    public function propiedades()
+    {
+        $propiedades = DB::table('propiedades')
+                     ->join('agentes', 'propiedades.agent_id', '=', 'agentes.id')
+                     ->join('categorias', 'propiedades.category_id', '=', 'categorias.id')
+                     ->select('propiedades.*', 'agentes.nombre as agente', 'categorias.nombre as categoria')
+                     ->get();
+        $agentes = Agentes::all();
+        $categorias = Categorias::all();
+        return view('propiedades', ['propiedades' => $propiedades, 'agentes' => $agentes, 'categorias' => $categorias]);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -35,7 +51,15 @@ class PropiedadesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Propiedades::create($request->all());
+        $propiedades = DB::table('propiedades')
+                     ->join('agentes', 'propiedades.agent_id', '=', 'agentes.id')
+                     ->join('categorias', 'propiedades.category_id', '=', 'categorias.id')
+                     ->select('propiedades.*', 'agentes.nombre as agente', 'categorias.nombre as categoria')
+                     ->get();
+        $agentes = Agentes::all();
+        $categorias = Categorias::all();
+        return view('propiedades', ['propiedades' => $propiedades, 'agentes' => $agentes, 'categorias' => $categorias]);
     }
 
     /**
